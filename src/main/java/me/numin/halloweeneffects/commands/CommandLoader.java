@@ -49,11 +49,10 @@ public class CommandLoader implements CommandExecutor {
 
                 // Set command
                 if (args[0].equalsIgnoreCase("set")) {
-                    if (args.length > 2) {
-                        new SetCommand(player, args[1], args[2]);
-                    } else {
-                        new SetCommand(player, args[1]);
-                    }
+                    if (args.length < 2) player.sendMessage(MessageHandler.invalidArgument());
+                    else if (args.length == 2) new SetCommand(player, args[1]);
+                    else if (args.length == 3) new SetCommand(player, args[1], args[2]);
+                    else player.sendMessage(MessageHandler.tooManyArguments());
                 }
             }
         }

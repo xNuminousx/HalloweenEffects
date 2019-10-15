@@ -20,9 +20,13 @@ public class MessageHandler {
                 ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "MEHE" +
                 ChatColor.BLACK + "" + ChatColor.BOLD + "] ";
     }
-    public static String invalidArgument(String input) {
-        if (input == null) return lineHeader() + ChatColor.RED + "You must define another argument.";
-        else return lineHeader() + ChatColor.RED + "Invalid argument. Use " + ChatColor.ITALIC + "/he" +
+    public static String invalidArgument() {
+        return lineHeader() + ChatColor.RED + "You've inputted the command incorrectly. Use " + ChatColor.ITALIC + "/he" +
+                ChatColor.RESET +
+                ChatColor.RED + " to get a list of commands and their usages.";
+    }
+    public static String tooManyArguments() {
+        return lineHeader() + ChatColor.RED + "You've given too many arguments. Use " + ChatColor.ITALIC + "/he" +
                 ChatColor.RESET +
                 ChatColor.RED + " to get a list of commands and their usages.";
     }

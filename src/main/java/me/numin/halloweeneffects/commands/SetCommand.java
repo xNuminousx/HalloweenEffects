@@ -17,6 +17,13 @@ class SetCommand {
     private String trailName;
 
     SetCommand(Player player, String input) {
+        if (player == null) return;
+
+        if (input == null) {
+            player.sendMessage(MessageHandler.invalidArgument());
+            return;
+        }
+
         // Creates a list of trail names to be compared.
         List<String> trailNames = new ArrayList<>();
         for (Trails trailType : Trails.values()) {
@@ -45,6 +52,13 @@ class SetCommand {
     }
 
     SetCommand(Player sender, String input, String target) {
+        if (sender == null) return;
+
+        if (input == null) {
+            sender.sendMessage(MessageHandler.invalidArgument());
+            return;
+        }
+
         if (!sender.hasPermission("halloween.command.op")) {
             sender.sendMessage(MessageHandler.noPermission());
             return;
