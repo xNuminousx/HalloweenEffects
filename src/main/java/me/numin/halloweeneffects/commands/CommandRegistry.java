@@ -8,9 +8,8 @@ import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 
-public class CommandLoader implements CommandExecutor {
+public class CommandRegistry implements CommandExecutor {
 
-    public static HashMap<String, Long> pumpkinStrikeCooldowns = new HashMap<>();
     private Player player;
 
     @Override

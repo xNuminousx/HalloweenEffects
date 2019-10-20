@@ -1,6 +1,5 @@
 package me.numin.halloweeneffects.effects.trails;
 
-import me.numin.halloweeneffects.commands.CommandLoader;
 import me.numin.halloweeneffects.effects.Effect;
 import me.numin.halloweeneffects.effects.Trail;
 import org.bukkit.*;
@@ -11,6 +10,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.HashMap;
 
 public class PumpkinHead extends Trail implements Effect {
+
+    public static HashMap<String, Long> strikeCooldowns = new HashMap<>();
 
     private Particle.DustOptions orange = new Particle.DustOptions(Color.fromRGB(255, 135, 21), 1);
     private ItemStack initialHelmet;
@@ -42,7 +43,7 @@ public class PumpkinHead extends Trail implements Effect {
     }
 
     private boolean canStrike() {
-        HashMap<String, Long> cooldowns = CommandLoader.pumpkinStrikeCooldowns;
+        HashMap<String, Long> cooldowns = strikeCooldowns;
 
         if (cooldowns.containsKey(player.getName())) {
             long timeLeft = (((cooldowns.get(player.getName()) / 1000) + 60) - (System.currentTimeMillis() / 1000));
