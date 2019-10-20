@@ -19,6 +19,11 @@ class SetCommand {
     SetCommand(Player player, String input) {
         if (player == null) return;
 
+        if (player.getWorld().getName().equals("bendarenas")) {
+            player.sendMessage(MessageHandler.illegalWorld(null));
+            return;
+        }
+
         if (input == null) {
             player.sendMessage(MessageHandler.invalidArgument());
             return;
@@ -68,6 +73,11 @@ class SetCommand {
         if (targetPlayer == null) {
             sender.sendMessage(MessageHandler.playerDoesNotExist(target));
         } else {
+            if (targetPlayer.getWorld().getName().equals("bendarenas")) {
+                sender.sendMessage(MessageHandler.illegalWorld(targetPlayer));
+                return;
+            }
+
             List<String> trailNames = new ArrayList<>();
             for (Trails trailType : Trails.values()) {
                 trailNames.add(trailType.toString());

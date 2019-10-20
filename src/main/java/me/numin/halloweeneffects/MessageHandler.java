@@ -1,6 +1,7 @@
 package me.numin.halloweeneffects;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import java.util.Random;
 
@@ -19,6 +20,10 @@ public class MessageHandler {
                 ChatColor.RESET +
                 ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "MEHE" +
                 ChatColor.BLACK + "" + ChatColor.BOLD + "] ";
+    }
+    public static String illegalWorld(Player target) {
+        if (target == null) return lineHeader() + ChatColor.RED + "You're in a disabled world.";
+        else return lineHeader() + ChatColor.RED + "That player is in a disabled world.";
     }
     public static String invalidArgument() {
         return lineHeader() + ChatColor.RED + "You've inputted the command incorrectly. Use " + ChatColor.ITALIC + "/he" +

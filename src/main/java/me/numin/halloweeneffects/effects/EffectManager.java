@@ -16,7 +16,8 @@ public class EffectManager implements Runnable {
 
             if (player == null ||
                     !player.hasPermission(trail.getPermission()) ||
-                    !player.isOnline()) {
+                    !player.isOnline() ||
+                    player.getWorld().getName().equalsIgnoreCase("bendarenas")) {
                 Trail.removeInstance(player);
                 continue;
             }
