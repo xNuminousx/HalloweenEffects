@@ -1,6 +1,7 @@
 package me.numin.halloweeneffects.commands;
 
 import me.numin.halloweeneffects.MessageHandler;
+import me.numin.halloweeneffects.effects.EffectManager;
 import me.numin.halloweeneffects.effects.Trail;
 import me.numin.halloweeneffects.effects.Trail.Trails;
 import me.numin.halloweeneffects.effects.trails.PumpkinHead;
@@ -19,9 +20,11 @@ class SetCommand {
     SetCommand(Player player, String input) {
         if (player == null) return;
 
-        if (player.getWorld().getName().equals("bendarenas")) {
-            player.sendMessage(MessageHandler.illegalWorld(null));
-            return;
+        for (String world : EffectManager.disabledWorlds) {
+            if (player.getWorld().getName().equalsIgnoreCase(world)) {
+                player.sendMessage(MessageHandler.illegalWorld(null));
+                return;
+            }
         }
 
         if (input == null) {
@@ -73,9 +76,11 @@ class SetCommand {
         if (targetPlayer == null) {
             sender.sendMessage(MessageHandler.playerDoesNotExist(target));
         } else {
-            if (targetPlayer.getWorld().getName().equals("bendarenas")) {
-                sender.sendMessage(MessageHandler.illegalWorld(targetPlayer));
-                return;
+            for (String world : EffectManager.disabledWorlds) {
+                if (sender.getWorld().getName().equalsIgnoreCase(world)) {
+                    sender.sendMessage(MessageHandler.illegalWorld(targetPlayer));
+                    return;
+                }
             }
 
             List<String> trailNames = new ArrayList<>();

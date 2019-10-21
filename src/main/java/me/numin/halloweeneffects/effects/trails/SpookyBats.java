@@ -60,14 +60,15 @@ public class SpookyBats extends Trail implements Effect {
     private void trackBats() {
         if (livingBats == null || livingBats.isEmpty()) return;
 
-        // Loops through all existing bats. Uses Iterator to fix ConcurrentModificationException (altering collection while looping)
+        // Loops through all existing bats. Uses Iterator to fix ConcurrentModificationException
         for (Iterator<Bat> iterator = livingBats.iterator(); iterator.hasNext();) {
             Bat bat = iterator.next();
             Location batLocation = bat.getLocation().add(0, 0.3, 0);
 
-            // Conditionals to kill bats
-            if (bat.getTicksLived() > 20 * 5 ||
-                    bat.getLocation().distance(player.getLocation()) > 10 ||
+            // Conditionals to kill bats. Lifespan: 5s. Range: 10b
+            if (bat.getTicksLived() > (20 * 5) ||
+                    batLocation.distance(player.getLocation()) > 10 ||
+                    bat.getWorld() != player.getWorld() ||
                     bat.isDead()) {
                 iterator.remove();
                 killBat(bat);
@@ -85,7 +86,7 @@ public class SpookyBats extends Trail implements Effect {
 
     @Override
     public String getPermission() {
-        return "halloween.trail.spookybats";
+        return baseNode + getName().toLowerCase();
     }
 
     @Override

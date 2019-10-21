@@ -10,9 +10,10 @@ public abstract class Trail implements Effect {
 
     public static HashMap<Player, Trail> trails = new HashMap<>();
     public Player player;
+    protected String baseNode = "halloween.trail.";
 
     public enum Trails {
-        PumpkinHead, SpookyBats;
+        PumpkinHead, SpookyBats
     }
 
     public Trail(Player player) {
@@ -25,14 +26,10 @@ public abstract class Trail implements Effect {
         Trail trail = trails.get(player);
 
         // Terminate pumpkin heads
-        if (trail instanceof PumpkinHead) {
-            ((PumpkinHead) trail).removePumpkinHead();
-        }
+        if (trail instanceof PumpkinHead) ((PumpkinHead) trail).removePumpkinHead();
 
         // Terminates living bats
-        if (trail instanceof SpookyBats) {
-            ((SpookyBats) trail).killAllBats();
-        }
+        if (trail instanceof SpookyBats) ((SpookyBats) trail).killAllBats();
 
         trails.remove(player);
     }

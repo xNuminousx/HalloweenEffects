@@ -64,7 +64,7 @@ public class PumpkinHead extends Trail implements Effect {
 
     @Override
     public String getPermission() {
-        return "halloween.trail.pumpkinhead";
+        return baseNode + getName().toLowerCase();
     }
 
     @Override

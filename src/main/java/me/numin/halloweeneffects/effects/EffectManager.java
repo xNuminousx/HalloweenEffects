@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 
 public class EffectManager implements Runnable {
 
+    public static String[] disabledWorlds = {"bendarenas"};
+
     @Override
     public void run() {
         update();
@@ -14,10 +16,14 @@ public class EffectManager implements Runnable {
         for (Trail trail : Trail.trails.values()) {
             Player player = trail.getPlayer();
 
+            for (String world : disabledWorlds) {
+                if (player.getWorld().getName().equalsIgnoreCase(world))
+                    Trail.removeInstance(player);
+            }
+
             if (player == null ||
                     !player.hasPermission(trail.getPermission()) ||
-                    !player.isOnline() ||
-                    player.getWorld().getName().equalsIgnoreCase("bendarenas")) {
+                    !player.isOnline()) {
                 Trail.removeInstance(player);
                 continue;
             }
