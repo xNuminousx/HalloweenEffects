@@ -1,7 +1,7 @@
 name: HalloweenEffects
 version: ${project.version}
 main: me.numin.halloweeneffects.HalloweenEffects
-api-version: 1.13
+api-version: 1.16
 authors: [Numin]
 description: Adds a few halloween cosmetics!
 
@@ -9,15 +9,19 @@ commands:
   he:
     usage: /<command>
     aliases: halloweeneffects
-    description: basic help list
+    description: Basic help list
   he set:
     usage: /<command>
     aliases: he s
-    description: activates an effect.
+    description: Activates an effect.
   he remove:
     usage: /<command>
     aliases: he r
-    descriptions: removes an effect.
+    descriptions: Removes an effect.
+  he list:
+    usage: /<command>
+    aliases: he l
+    descriptions: Lists valid effects.
 
 permissions:
   halloween.command.op:
