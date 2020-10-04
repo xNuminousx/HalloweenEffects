@@ -18,10 +18,16 @@ class ListCommand {
         for (Trails trail: trails) {
             int bullet = trails.indexOf(trail) + 1;
             String trailName = trail.toString();
+            String description = null;
+
+            if (trailName.equalsIgnoreCase("PumpkinHead"))
+                description = "Curses you with the face of the wretched.";
+            else if (trailName.equalsIgnoreCase("SpookyBats"))
+                description = "Spooky season is upon us... Thus, swarms of spooky bats!";
 
             player.sendMessage(ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + bullet + ") " +
-                    ChatColor.RESET +
-                    ChatColor.GOLD + trailName);
+                    ChatColor.GOLD + "" + ChatColor.BOLD + trailName + ": " +
+                    ChatColor.DARK_GRAY + description);
         }
     }
 }
