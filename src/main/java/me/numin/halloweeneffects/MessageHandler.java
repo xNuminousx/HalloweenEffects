@@ -62,8 +62,11 @@ public class MessageHandler {
     public static String removeEffect(String input) {
         return lineHeader() + ChatColor.GREEN + "Removed the " + input + " effect.";
     }
-    public static String removeEffectBy(String input, String byName) {
-        return lineHeader() + ChatColor.GREEN + "You removed the " + input + " effect by " + byName;
+    public static String removeSomeonesEffect(String input, String targetName) {
+        return lineHeader() + ChatColor.GREEN + "You removed the " + input + " effect from " + targetName;
+    }
+    public static String someoneRemovedEffect(String input) {
+        return lineHeader() + ChatColor.RED + "Your " + input + " effect has been removed.";
     }
     public static String noPermission() {
         return lineHeader() + ChatColor.RED + "You do not have permission for that.";

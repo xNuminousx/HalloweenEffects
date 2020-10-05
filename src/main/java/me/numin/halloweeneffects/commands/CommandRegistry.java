@@ -6,8 +6,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-
 public class CommandRegistry implements CommandExecutor {
 
     private Player player;
@@ -19,6 +17,12 @@ public class CommandRegistry implements CommandExecutor {
             if (args.length == 0) new HelpCommand(sender);
 
             else {
+
+                // Debug Command
+                if (args[0].equalsIgnoreCase("debug")) {
+                    new DebugCommand(sender);
+                    return true;
+                }
 
                 if (!(sender instanceof Player)) sender.sendMessage("You must be a player to use this command.");
                 else player = (Player)sender;

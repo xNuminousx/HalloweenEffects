@@ -13,18 +13,18 @@ public class EffectManager implements Runnable {
     }
 
     private void update() {
-        for (Trail trail : Trail.trails.values()) {
-            Player player = trail.getPlayer();
+        for (Effect effect : Effect.effects.values()) {
+            Player player = effect.getPlayer();
 
             for (String world : disabledWorlds) {
                 if (player.getWorld().getName().equalsIgnoreCase(world))
-                    Trail.removeInstance(player);
+                    Effect.removeInstance(player);
             }
 
             if (player == null ||
-                    !player.hasPermission(trail.getPermission()) ||
+                    !player.hasPermission(effect.getPermission()) ||
                     !player.isOnline()) {
-                Trail.removeInstance(player);
+                Effect.removeInstance(player);
                 continue;
             }
 
@@ -32,14 +32,14 @@ public class EffectManager implements Runnable {
             if (player.isDead()) continue;
 
             try {
-                trail.run();
+                effect.run();
             } catch (Exception e) {
-                HalloweenEffects.logger.warning("Failed to run the trail " + trail.getName() + " for " + trail.getPlayer().getName() + ".");
+                HalloweenEffects.logger.warning("Failed to run the trail " + effect.getName() + " for " + effect.getPlayer().getName() + ".");
                 HalloweenEffects.logger.info("Disabling defective trail...");
 
                 // Attempts to disable a trail when it can't be ran to prevent console spam
                 try {
-                    Trail.removeInstance(trail.getPlayer());
+                    Effect.removeInstance(effect.getPlayer());
                 } catch (Exception ex) {
                     HalloweenEffects.logger.warning("Failed to disable the defective trail.");
                     ex.printStackTrace();

@@ -3,6 +3,7 @@ version: ${project.version}
 main: me.numin.halloweeneffects.HalloweenEffects
 api-version: 1.16
 authors: [Numin]
+softdepend: [ProjectKorra]
 description: Adds a few halloween cosmetics!
 
 commands:
@@ -22,11 +23,21 @@ commands:
     usage: /<command>
     aliases: he l
     descriptions: Lists valid effects.
+  he debug:
+    usage: /<command>
+    aliases: he d
+    description: Debug command.
 
 permissions:
   halloween.command.op:
     default: op
-  halloween.trail.spookybats:
+    description: Gives access to the ability to set and remove another players effects as well as the debug command.
+  halloween.effect.spookybats:
     default: true
-  halloween.trail.pumpkinhead:
+    description: Enables the "SpookyBats" effect.
+  halloween.effect.pumpkinhead:
     default: true
+    description: Enables the "PumpkinHead" effect.
+  halloween.effect.scaredwet:
+    default: true
+    description: Enables the "ScaredWet" effect.

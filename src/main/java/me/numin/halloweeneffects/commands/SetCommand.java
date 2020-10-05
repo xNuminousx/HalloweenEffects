@@ -2,10 +2,11 @@ package me.numin.halloweeneffects.commands;
 
 import me.numin.halloweeneffects.MessageHandler;
 import me.numin.halloweeneffects.effects.EffectManager;
-import me.numin.halloweeneffects.effects.Trail;
-import me.numin.halloweeneffects.effects.Trail.Trails;
-import me.numin.halloweeneffects.effects.trails.PumpkinHead;
-import me.numin.halloweeneffects.effects.trails.SpookyBats;
+import me.numin.halloweeneffects.effects.Effect;
+import me.numin.halloweeneffects.effects.Effect.Effects;
+import me.numin.halloweeneffects.effects.effects.PumpkinHead;
+import me.numin.halloweeneffects.effects.effects.ScaredWet;
+import me.numin.halloweeneffects.effects.effects.SpookyBats;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -34,7 +35,7 @@ class SetCommand {
 
         // Creates a list of trail names to be compared.
         List<String> trailNames = new ArrayList<>();
-        for (Trails trailType : Trails.values()) {
+        for (Effects trailType : Effects.values()) {
             trailNames.add(trailType.toString());
         }
 
@@ -44,12 +45,12 @@ class SetCommand {
             if (item.equalsIgnoreCase(input)) {
 
                 // Checks the player for active effects. Removes them if any exist.
-                if (Trail.trails.containsKey(player)){
-                    Trail trail = Trail.trails.get(player);
-                    if (trail.getName().equalsIgnoreCase(item)) {
+                if (Effect.effects.containsKey(player)){
+                    Effect effect = Effect.effects.get(player);
+                    if (effect.getName().equalsIgnoreCase(item)) {
                         player.sendMessage(MessageHandler.effectAlreadyActive());
                         return;
-                    } else Trail.removeInstance(player);
+                    } else Effect.removeInstance(player);
                 }
 
                 initializeEffect(player, input);
@@ -84,7 +85,7 @@ class SetCommand {
             }
 
             List<String> trailNames = new ArrayList<>();
-            for (Trails trailType : Trails.values()) {
+            for (Effects trailType : Effects.values()) {
                 trailNames.add(trailType.toString());
             }
 
@@ -94,12 +95,12 @@ class SetCommand {
                 if (item.equalsIgnoreCase(input)) {
 
                     // Checks the target for active effects. Removes them if any exist.
-                    if (Trail.trails.containsKey(targetPlayer)) {
-                        Trail trail = Trail.trails.get(targetPlayer);
-                        if (trail.getName().equalsIgnoreCase(item)) {
+                    if (Effect.effects.containsKey(targetPlayer)) {
+                        Effect effect = Effect.effects.get(targetPlayer);
+                        if (effect.getName().equalsIgnoreCase(item)) {
                             targetPlayer.sendMessage(MessageHandler.someoneElseEffectAlreadyActive());
                             return;
-                        } else Trail.removeInstance(targetPlayer);
+                        } else Effect.removeInstance(targetPlayer);
                     }
 
                     initializeEffect(targetPlayer, input);
@@ -118,6 +119,9 @@ class SetCommand {
         } else if (name.equalsIgnoreCase("PumpkinHead")) {
             new PumpkinHead(player);
             trailName = "PumpkinHead";
+        } else if (name.equalsIgnoreCase("ScaredWet")) {
+            new ScaredWet(player);
+            trailName = "ScaredWet";
         }
     }
 }

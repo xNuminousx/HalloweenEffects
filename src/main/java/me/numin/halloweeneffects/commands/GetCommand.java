@@ -1,7 +1,7 @@
 package me.numin.halloweeneffects.commands;
 
 import me.numin.halloweeneffects.MessageHandler;
-import me.numin.halloweeneffects.effects.Trail;
+import me.numin.halloweeneffects.effects.Effect;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -20,8 +20,8 @@ class GetCommand {
         }
 
         assert target != null;
-        if (Trail.trails.containsKey(target)) {
-            String trailName = Trail.trails.get(target).getName();
+        if (Effect.effects.containsKey(target)) {
+            String trailName = Effect.effects.get(target).getName();
 
             sender.sendMessage(MessageHandler.header());
             sender.sendMessage(ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + target.getName() + " " +
@@ -34,8 +34,8 @@ class GetCommand {
     GetCommand(Player player) {
         if (player == null) return;
 
-        if (Trail.trails.containsKey(player)) {
-            String trailName = Trail.trails.get(player).getName();
+        if (Effect.effects.containsKey(player)) {
+            String trailName = Effect.effects.get(player).getName();
 
             player.sendMessage(MessageHandler.header());
             player.sendMessage(ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "You " +

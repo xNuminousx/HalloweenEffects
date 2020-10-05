@@ -1,8 +1,8 @@
 package me.numin.halloweeneffects.listeners;
 
 import me.numin.halloweeneffects.MessageHandler;
-import me.numin.halloweeneffects.effects.Trail;
-import me.numin.halloweeneffects.effects.trails.PumpkinHead;
+import me.numin.halloweeneffects.effects.Effect;
+import me.numin.halloweeneffects.effects.effects.PumpkinHead;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,10 +16,10 @@ public class InventoryListener implements Listener {
         if (!(event.getWhoClicked() instanceof Player)) return;
         Player player = (Player) event.getWhoClicked();
 
-        if (!Trail.trails.containsKey(player)) return;
-        Trail trail = Trail.trails.get(player);
+        if (!Effect.effects.containsKey(player)) return;
+        Effect effect = Effect.effects.get(player);
 
-        if (!(trail instanceof PumpkinHead)) return;
+        if (!(effect instanceof PumpkinHead)) return;
 
         if (event.getSlotType() == InventoryType.SlotType.ARMOR &&
                 event.getCurrentItem().equals(player.getInventory().getHelmet()) &&

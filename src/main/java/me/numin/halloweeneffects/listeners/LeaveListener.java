@@ -1,6 +1,6 @@
 package me.numin.halloweeneffects.listeners;
 
-import me.numin.halloweeneffects.effects.Trail;
+import me.numin.halloweeneffects.effects.Effect;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,7 +11,7 @@ public class LeaveListener implements Listener {
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        if (!Trail.trails.containsKey(player)) return;
-        Trail.removeInstance(player);
+        if (!Effect.effects.containsKey(player)) return;
+        Effect.removeInstance(player);
     }
 }

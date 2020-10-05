@@ -1,7 +1,7 @@
 package me.numin.halloweeneffects.commands;
 
 import me.numin.halloweeneffects.MessageHandler;
-import me.numin.halloweeneffects.effects.Trail;
+import me.numin.halloweeneffects.effects.Effect;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -17,17 +17,18 @@ class RemoveCommand {
         if (target == null) {
             sender.sendMessage(MessageHandler.playerDoesNotExist(input));
         } else {
-            if (Trail.trails.containsKey(target)) {
-                sender.sendMessage(MessageHandler.removeEffectBy(Trail.trails.get(target).getName(), sender.getName()));
-                Trail.removeInstance(target);
+            if (Effect.effects.containsKey(target)) {
+                sender.sendMessage(MessageHandler.removeSomeonesEffect(Effect.effects.get(target).getName(), target.getName()));
+                target.sendMessage(MessageHandler.someoneRemovedEffect(Effect.effects.get(target).getName()));
+                Effect.removeInstance(target);
             } else sender.sendMessage(MessageHandler.playerDoesNotHaveAnEffect(target.getName()));
         }
     }
 
     RemoveCommand(Player player) {
-        if (Trail.trails.containsKey(player)) {
-            player.sendMessage(MessageHandler.removeEffect(Trail.trails.get(player).getName()));
-            Trail.removeInstance(player);
+        if (Effect.effects.containsKey(player)) {
+            player.sendMessage(MessageHandler.removeEffect(Effect.effects.get(player).getName()));
+            Effect.removeInstance(player);
         } else player.sendMessage(MessageHandler.senderDoesNotHaveAnEffect());
     }
 }

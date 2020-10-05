@@ -1,7 +1,6 @@
-package me.numin.halloweeneffects.effects.trails;
+package me.numin.halloweeneffects.effects.effects;
 
 import me.numin.halloweeneffects.effects.Effect;
-import me.numin.halloweeneffects.effects.Trail;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -9,12 +8,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.HashMap;
 
-public class PumpkinHead extends Trail implements Effect {
+public class PumpkinHead extends Effect {
 
     public static HashMap<String, Long> strikeCooldowns = new HashMap<>();
 
-    private Particle.DustOptions orange = new Particle.DustOptions(Color.fromRGB(255, 135, 21), 1);
-    private ItemStack initialHelmet;
+    private final Particle.DustOptions orange = new Particle.DustOptions(Color.fromRGB(255, 135, 21), 1);
+    private final ItemStack initialHelmet;
 
     public PumpkinHead(Player player) {
         super(player);
